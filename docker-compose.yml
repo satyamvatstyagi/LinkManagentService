@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: user-management-service-image:1.0.0
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: nagarro
+      DATABASE_NAME: mtn
+      DATABASE_PORT: 5432
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nagarro
+      POSTGRES_DB: mtn
+    ports:
+      - "5432:5432"
